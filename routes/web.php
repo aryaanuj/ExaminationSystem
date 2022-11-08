@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CourseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::view('hello','admin.hello');
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth','admin_auth']], function (){
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
+    Route::resource('course', CourseController::class);
 });
 
 
