@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
+  <!-- toastr style -->
+  <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
   <!-- overlayScrollbars -->
@@ -72,6 +74,8 @@
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+<!-- Toastr js -->
+<script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
 <!-- Sparkline -->
 <script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
@@ -94,5 +98,30 @@
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+
+<script>
+  $(function(){
+    toastr.options = {
+      "closeButton": true,
+      "progressBar": true,
+      "tapToDismiss":false
+    }
+
+    @if(session()->has('success'))
+      toastr.success('{!! session()->get("success") !!}', 'Success');
+    @endif
+
+    @if(session()->has('error'))
+      toastr.error('{!! session()->get("error") !!}', 'Error');
+    @endif
+
+    @if(session()->has('warning'))
+      toastr.warning('{!! session()->get("warning") !!}', 'Warning');
+    @endif
+
+
+  });
+</script>
+
 </body>
 </html>

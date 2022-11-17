@@ -20,7 +20,7 @@ class Course extends Model
             $course->save();
             session()->flash('success','Course Added');
         }catch(\Exception $e){
-            dd($e->getMessage());
+            // dd($e->getMessage());
             session()->flash('error','Something went wrong');
         }
     }
