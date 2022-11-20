@@ -11,7 +11,30 @@ class CourseController extends Controller
 {
     public $data = [];
     public function index(Request $request){
+        $this->data['table_columns'] = ['title'=>'Title', 'course_img'=>'Image','description'=>'Description','status'=>'Status'];
 
+        if($request->ajax()){
+            $offset = $request->get('start',0);
+            $limit = $request->get('length',10);
+            $columns = $request->get('columns');
+            $order = $request->get('order');
+            $sort_order = $sort_dir = '';
+            if(isset($order[0]) && $columns[$order[0]['column']]['data']){
+                $sort_order = $columns[$order[0]['column']]['data'];
+                $sort_dir = $order[0]['dir'];
+            }
+            $search = $request->get('search');
+            $search = isset($search['value'])?$search['value']:'';
+
+            $data = Course::getData($offset,$limit,$sort_order,$sort_dir,$search);
+            return response()->json($data);
+        }
+
+        foreach($this->data['table_columns'] as $key=>$value){
+            $this->data['table_columns_json'][] = ['data'=>$key];
+        }
+        $this->data['resource_url'] = route('course.index');
+        return view('admin.courses.list',$this->data);
     }
     public function create(Request $request){
         $formFields = Course::getFormFields();

@@ -9,6 +9,36 @@ use Illuminate\Support\Str;
 class Course extends Model
 {
     protected $fillable = ['title','course_img','description','status'];
+
+
+    public static function getData($offset=0,$limit=10,$sort_order='',$sort_dir='desc',$search=''){
+        $query = $temp = self::select('title','course_img', 'description','status');
+
+        if(!empty($search)){
+            $search = strtolower($search);
+            $query = $query->whereRaw("LOWER(title) LIKE '%".$search."%'");
+        }
+        if(!empty($sort_order)){
+            $query = $query->orderBy($sort_order,$sort_dir);
+        }
+
+        $data['iTotalDisplayRecords'] = $query->count();
+
+        if(!empty($search)){
+            $data['iTotalRecords'] = $temp->count();
+        }else{
+            $data['iTotalRecords']  = $data['iTotalDisplayRecords'];
+        }
+        $result = $query->skip($offset)->take($limit)->get();
+        foreach($result as $row){
+            $row->course_img = '<img src="'.$row->course_img.'" class="img-fluid w-25">';
+        }
+
+        $data['aaData'] = $result;
+
+        return $data;
+    }
+
     public static function store($input){
         try{
             $filePath = \App\Modules\Utility::uploadFile($input['image'], 'Courses');

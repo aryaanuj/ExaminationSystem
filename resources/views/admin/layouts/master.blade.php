@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
+
+  <!-- Datatables -->
+  <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <!-- toastr style -->
   <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}">
   <!-- Theme style -->
@@ -88,6 +91,8 @@
 <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<!-- Datatables -->
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <!-- Summernote -->
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
@@ -119,9 +124,12 @@
       toastr.warning('{!! session()->get("warning") !!}', 'Warning');
     @endif
 
-
+    // $("#datatable").DataTable();
   });
 </script>
+
+@section('page_script')
+@show
 
 </body>
 </html>
