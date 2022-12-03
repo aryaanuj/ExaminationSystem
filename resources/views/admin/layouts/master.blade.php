@@ -30,6 +30,11 @@
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
+  <style>
+    html{
+      font-size:13px;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -92,7 +97,8 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Datatables -->
-<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src='{{ asset('plugins/datatables/jquery.dataTables.min.js') }}'></script>
+<script src='{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}'></script>
 <!-- Summernote -->
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->

@@ -11,7 +11,7 @@ class CourseController extends Controller
 {
     public $data = [];
     public function index(Request $request){
-        $this->data['table_columns'] = ['title'=>'Title', 'course_img'=>'Image','description'=>'Description','status'=>'Status'];
+        $this->data['table_columns'] = ['title'=>'Title', 'course_img'=>'Image','description'=>'Description','status'=>'Status','actions'=>'Actions'];
 
         if($request->ajax()){
             $offset = $request->get('start',0);
@@ -50,5 +50,19 @@ class CourseController extends Controller
         $input['image'] = $request->file('image');
         Course::store($input);
         return Redirect::back();
+    }
+
+    public function edit(Request $request, Course $course){
+        $formFields = Course::getFormFields($course);
+        foreach($formFields as $key=>$value){
+            $this->data[$key] = \App\Modules\Form::getForm($value);
+        }
+        $this->data['submit_url'] = route('course.update',$course->id);
+        return view('admin.courses.edit', $this->data);
+    }
+
+    public function update(CreateCourseRequest $request, Course $course){
+        Course::modify($request->validated(),$course);
+        return Redirect::route('course.index');
     }
 }

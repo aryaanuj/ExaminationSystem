@@ -23,11 +23,18 @@ class CreateCourseRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules =  [
             'title' => 'required|regex:/[a-zA-Z ]/|unique:courses,title',
             'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             'status' => 'required',
             'description' => 'required'
         ];
+
+        if($this->getMethod()=='PUT'){
+            $rules['title'] = 'required|regex:/[a-zA-Z ]/|unique:courses,title,'.$this->route('course')->id;
+            $rules['image'] = 'nullable|image|mimes:png,jpg,jpeg|max:2048';
+        }
+
+        return $rules;
     }
 }

@@ -1,4 +1,4 @@
-function renderAjaxDataTable(id, url, columns){
+function renderAjaxDataTable(id, url, columns, columnDefs){
     $(id).DataTable({
         processing: true,
         serverSide: true,
@@ -6,5 +6,6 @@ function renderAjaxDataTable(id, url, columns){
             url:url
         },
         columns:columns,
+        columnDefs:columnDefs
     });
 }

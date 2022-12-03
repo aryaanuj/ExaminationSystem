@@ -1,3 +1,11 @@
+@if(isset($type) && $type=='file')
+    @if($value)
+        <div class="col-md-1">
+            <img src="{{asset($value)}}" class="img-fluid">
+        </div>
+    @endif
+@endif
+
 <div class="form-group {{ isset($grid) ? $grid : '' }}"
     @foreach ($parent_attributes as $k => $v) {{ $k }}="{{ $v }}" @endforeach
     @if (isset($parent_id)) id="{{ $parent_id }}" @endif>
