@@ -32,6 +32,7 @@ class Course extends Model
         $result = $query->skip($offset)->take($limit)->get();
         foreach($result as $row){
             $row->course_img = '<img src="'.$row->course_img.'" class="img-fluid w-25">';
+            $row->status = $row->status?'<span class="badge badge-success">Active</span>':'<span class="badge badge-danger">Inactive</span>';
             $row->actions = '';
         }
 

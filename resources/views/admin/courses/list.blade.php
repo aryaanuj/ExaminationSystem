@@ -30,8 +30,13 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="{{$resource_url}}/${row.id}/edit">Edit</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" style="cursor:pointer" onclick="confirmBox(
+                                        'Are you sure?',
+                                        'Do you want to delete this course',
+                                        'Delete',
+                                        'question',
+                                        '{{$resource_url}}/${row.id}'
+                                    )">Delete</a>
                                 </div>
                             </div>`;
                 return actions;

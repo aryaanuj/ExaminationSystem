@@ -28,8 +28,11 @@
   <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
+  <!-- Sweetalert -->
+  <link rel="stylesheet" href="{{asset('plugins/sweetalert2/sweetalert2.min.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
   <style>
     html{
       font-size:13px;
@@ -103,6 +106,8 @@
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- sweetalert -->
+<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
@@ -129,8 +134,6 @@
     @if(session()->has('warning'))
       toastr.warning('{!! session()->get("warning") !!}', 'Warning');
     @endif
-
-    // $("#datatable").DataTable();
   });
 </script>
 

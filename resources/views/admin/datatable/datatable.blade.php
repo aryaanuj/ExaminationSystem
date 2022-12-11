@@ -1,3 +1,7 @@
+<form action="#" id="delete-form" method="post">
+    @csrf
+    @method('DELETE')
+</form>
 <table id="datatable" class="table table-bordered" style="width:100%">
     <thead>
         <tr>

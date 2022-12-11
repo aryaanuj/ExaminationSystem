@@ -1,0 +1,19 @@
+.btn-violet {
+    background-color: #2A265F;
+    color: white;
+    box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+  }
+  
+  .btn-pills-violet {
+    background-color: #2A265F;
+    color: #fff;
+    border-radius: 23px !important;
+    font-size: 13px;
+    box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+  }
+  
+  .btn-pills-violet:hover {
+    background-color: white;
+    border: 1px solid #2A265F;
+    color: #2A265F;
+  }

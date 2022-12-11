@@ -65,4 +65,10 @@ class CourseController extends Controller
         Course::modify($request->validated(),$course);
         return Redirect::route('course.index');
     }
+
+    public function destroy(Request $request, Course $course){
+        $course->delete();
+        session()->flash('success','Course Deleted');
+        return Redirect::route('course.index');
+    }
 }
