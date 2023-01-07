@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Redirect;
 class CourseController extends Controller
 {
     public $data = [];
+
+    public function __construct()
+    {
+        $this->middleware(function($request,$next){
+            $this->data['breadcrumb'] = [
+                ['title'=>'Dashboard','link'=>route('admin.dashboard')],
+                ['title'=>'Course', 'link'=>route('course.index')]
+            ];
+            $this->data['page_title'] = 'Course Management';
+            return $next($request);
+        });
+    }
+
     public function index(Request $request){
         $this->data['table_columns'] = ['title'=>'Title', 'course_img'=>'Image','description'=>'Description','status'=>'Status','actions'=>'Actions'];
 
@@ -33,6 +46,10 @@ class CourseController extends Controller
         foreach($this->data['table_columns'] as $key=>$value){
             $this->data['table_columns_json'][] = ['data'=>$key];
         }
+        $this->data['menu'] = [
+            ['title'=>'Add New', 'link'=>route('course.create')]
+        ];
+        // dd($this->data['menu']);
         $this->data['resource_url'] = route('course.index');
         return view('admin.courses.list',$this->data);
     }
@@ -41,6 +58,7 @@ class CourseController extends Controller
         foreach($formFields as $key=>$value){
             $this->data[$key] = \App\Modules\Form::getForm($value);
         }
+        $this->data['breadcrumb'][] = ['title'=>'Create'];
         $this->data['submit_url'] = route('course.store');
         return view('admin.courses.create', $this->data);
     }
@@ -57,6 +75,7 @@ class CourseController extends Controller
         foreach($formFields as $key=>$value){
             $this->data[$key] = \App\Modules\Form::getForm($value);
         }
+        $this->data['breadcrumb'][] = ['title'=>'Edit'];
         $this->data['submit_url'] = route('course.update',$course->id);
         return view('admin.courses.edit', $this->data);
     }
