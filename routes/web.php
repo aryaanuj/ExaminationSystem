@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin', 'middleware'=>['auth','admin_auth']], function (){
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
     Route::resource('course', CourseController::class);
+    Route::resource('category', CategoryController::class);
 });
 
 
