@@ -47,7 +47,8 @@ class CategoryController extends Controller
             $this->data['table_columns_json'][] = ['data'=>$key];
         }
         $this->data['menu'] = [
-            ['title'=>'Add New', 'link'=>route('category.create')]
+            ['title'=>'Add New', 'link'=>route('category.create')],
+            ['title'=>'Mapping With Course', 'link'=>route('course.category.create')]
         ];
         // dd($this->data['menu']);
         $this->data['resource_url'] = route('category.index');

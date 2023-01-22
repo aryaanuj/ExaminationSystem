@@ -109,4 +109,13 @@ class Course extends Model
 
         return $formFields;
     }
+
+    public static function getCourseList(){
+        $courses = self::select('id','title')->get();
+        $arr = array();
+        foreach($courses as $key=>$value){
+            $arr[$value->id] = $value['title'];
+        }
+        return $arr;
+    }
 }

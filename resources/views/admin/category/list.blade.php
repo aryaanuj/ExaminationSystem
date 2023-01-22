@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
  
  @section('title')
- Course Management
+ Category Management
  @endsection
 
  @section('content')

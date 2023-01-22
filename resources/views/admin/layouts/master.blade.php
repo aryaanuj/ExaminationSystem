@@ -30,6 +30,8 @@
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
   <!-- Sweetalert -->
   <link rel="stylesheet" href="{{asset('plugins/sweetalert2/sweetalert2.min.css')}}">
+    <!-- select2 -->
+    <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
@@ -108,6 +110,8 @@
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- sweetalert -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<!-- select2 -->
+<script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
@@ -117,6 +121,8 @@
 
 <script>
   $(function(){
+    $('.select2').select2();
+    
     toastr.options = {
       "closeButton": true,
       "progressBar": true,

@@ -92,4 +92,13 @@ class Category extends Model
 
         return $formFields;
     }
+
+    public static function getCategoryList(){
+        $category = self::select('id','name')->get();
+        $arr = array();
+        foreach($category as $key=>$value){
+            $arr[$value->id] = $value['name'];
+        }
+        return $arr;
+    }
 }

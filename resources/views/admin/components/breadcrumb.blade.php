@@ -1,7 +1,7 @@
 <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6 d-flex">
+          <div class="col-sm-10 col-md-10 d-flex">
             <h1 class="m-0">{{$page_title??''}}</h1>
             @if(isset($breadcrumb))
             <ol class="breadcrumb float-sm-right ml-3 pt-1">
@@ -15,7 +15,7 @@
             </ol>
             @endif
           </div><!-- /.col -->
-          <div class="col-sm-6">
+          <div class="col-sm-2 col-md-2">
               <ol class="breadcrumb float-sm-right">
                 @if(isset($menu))
                   @if(count($menu)==1)
