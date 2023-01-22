@@ -10,6 +10,9 @@ class Course extends Model
 {
     protected $fillable = ['title','course_img','description','status'];
 
+    public function category(){
+        return $this->belongsToMany(Category::class, 'course_category');
+    }
 
     public static function getData($offset=0,$limit=10,$sort_order='',$sort_dir='desc',$search=''){
         $query = $temp = self::select('id','title','course_img', 'description','status');

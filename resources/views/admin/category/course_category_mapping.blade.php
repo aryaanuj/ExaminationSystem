@@ -15,16 +15,16 @@
                     <th>Courses</th>
                     <th>Categories</th>
                 </tr>
-                @foreach($courses as $key=>$value)
+                @foreach($courses as $key=>$course)
                 <tr>
-                    <th>{{$value}}</th>
-                    <th class="w-100">
-                        <select name="mapping[{{$key}}][]" class="form-control select2" multiple>
-                            @foreach($categories as $k=>$v)
-                                <option value="{{$k}}">{{$v}}</option>
+                    <td>{{$course['title']}}</td>
+                    <td class="w-100">
+                        <select name="mapping[{{$course['id']}}][]" class="select2 form-control" multiple>
+                            @foreach($categories as $id=>$category)
+                                <option value="{{$id}}" @if(count($course['category'])>0 && in_array($id,$course['category']))  selected @endif>{{$category}}</option>
                             @endforeach
                         </select>
-                    </th>
+                    </td>
                 </tr>
                 @endforeach
             </table>

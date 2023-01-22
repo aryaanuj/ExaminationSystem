@@ -28,9 +28,8 @@ class CourseCategoryController extends Controller
    
     public function create(Request $request){
         $this->data['breadcrumb'][] = ['title'=>'Mapping'];
-        $this->data['courses'] = Course::getCourseList();
+        $this->data['courses'] = CourseCategory::getCourseWithCategory();
         $this->data['categories'] = Category::getCategoryList();
-        // dd($this->data['categories']);
         $this->data['submit_url'] = route('course.category.store');
         return view('admin.category.course_category_mapping', $this->data);
     }
@@ -38,7 +37,7 @@ class CourseCategoryController extends Controller
     public function store(Request $request){
         $input = $request->all();
         CourseCategory::store($input);
-        return Redirect::route('category.index');
+        return Redirect::route('course.category.create');
     }
 
   

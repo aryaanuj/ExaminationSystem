@@ -14,6 +14,7 @@ class CourseCategory extends Model
     public static function store($input){
         try{
             foreach($input['mapping'] as $key=>$value){
+                CourseCategory::where(['course_id'=>$key])->delete();
                 foreach($value as $k=>$v){
                     self::create(['course_id'=>$key, 'category_id'=>$v]);
                 }
@@ -22,5 +23,16 @@ class CourseCategory extends Model
         }catch(\Exception $ex){
             session()->flash('error', 'Something went wrong');
         }
+    }
+
+    public static function getCourseWithCategory(){
+        $courses = Course::select('id','title')->with('category:id')->get();
+        return $courses->map(function($course){
+                return [
+                    'id'=>$course->id,
+                    'title'=>$course->title,
+                    'category'=> $course->category->pluck('id')->toArray()
+                ];
+        })->toArray();
     }
 }
