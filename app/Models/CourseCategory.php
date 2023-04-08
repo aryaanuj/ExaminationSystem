@@ -25,13 +25,17 @@ class CourseCategory extends Model
         }
     }
 
-    public static function getCourseWithCategory(){
-        $courses = Course::select('id','title')->with('category:id')->get();
-        return $courses->map(function($course){
+    public static function getCourseWithCategory($courseid=null, $getCategoryTitle=false){
+        $courses = Course::select('id','title');
+        if(!is_null($courseid)){
+            $courses = $courses->where('id',$courseid);
+        }
+        $courses = $courses->with('category:id,name')->get();
+        return $courses->map(function($course) use ($getCategoryTitle){
                 return [
                     'id'=>$course->id,
                     'title'=>$course->title,
-                    'category'=> $course->category->pluck('id')->toArray()
+                    'category'=> ! $getCategoryTitle ? $course->category->pluck('id')->toArray():$course->category->pluck('name','id')->toArray()
                 ];
         })->toArray();
     }
